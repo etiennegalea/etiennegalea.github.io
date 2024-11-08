@@ -44,6 +44,7 @@
   }
   
   .portfolio-container {
+    background: #f9f9f9;
     animation: fadeIn 0.8s ease-out forwards;
   }
   
@@ -129,23 +130,4 @@
     .project-card:hover {
       transform: translateY(-2px);
     }
-  }
-
-/* Animated Background */
-@keyframes animatedBackground {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-  
-  .portfolio-container {
-    background: linear-gradient(45deg, #87CEEB, #6a6a6b, #9382e8);
-    background-size: 300% 300%;
-    animation: animatedBackground 5s ease infinite;
   }
