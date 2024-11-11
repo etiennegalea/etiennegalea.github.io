@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Github, ExternalLink, Code, Database, Brain } from 'lucide-react';
+import { Github, ExternalLink, Code, Database, Brain, Sun, Moon } from 'lucide-react';
 import './styles/animations.css';
 
 
 const Card = ({ children, className }) => {
   return (
     <div
-      className={`bg-white rounded-lg shadow-md overflow-hidden ${className}`}
+      className={`bg-white dark:bg-gray-800 dark:text-white rounded-lg shadow-md overflow-hidden ${className}`}
     >
       {children}
     </div>
@@ -22,7 +22,7 @@ const CardTitle = ({ children }) => {
 };
 
 const CardDescription = ({ children }) => {
-  return <p className="text-gray-600">{children}</p>;
+  return <p className="text-gray-600 dark:text-gray-300">{children}</p>;
 };
 
 const CardContent = ({ children }) => {
@@ -32,6 +32,7 @@ const CardContent = ({ children }) => {
 const Portfolio = () => {
   const [filter, setFilter] = useState('all');
   const [isLoading, setIsLoading] = useState(true);
+  const [isDark, setIsDark] = useState(false);
   
   useEffect(() => {
     // Simulate loading state
@@ -39,37 +40,52 @@ const Portfolio = () => {
     setTimeout(() => setIsLoading(false), 500);
   }, [filter]);
 
+  useEffect(() => {
+    // Apply theme to document
+    document.documentElement.classList.toggle('dark', isDark);
+  }, [isDark]);
+
+  const toggleTheme = () => {
+    setIsDark(!isDark);
+  };
+
   const projects = [
     {
-      title: "Sentiment Analysis Model",
-      description: "Deep learning model built with PyTorch for analyzing customer feedback sentiment. Achieves 94% accuracy on test data.",
-      category: "ml",
-      github: "https://github.com/username/sentiment-analysis",
-      demo: "https://demo-sentiment.example.com",
-      tags: ["PyTorch", "NLP", "Deep Learning"]
+      title: "Braindecode",
+      description: "A forked repo that extends existing functionality to cater to multiple datasets, settings EEG montages, selecting channels, and 3D plotting the results of the clustered model.",
+      category: "dl",
+      github: "https://github.com/etiennegalea/braindecode",
+      tags: ["PyTorch", "Deep Learning", "self-supervised", "EEG"]
     },
     {
-      title: "News Aggregator",
-      description: "Web scraper that collects and categorizes news articles from multiple sources using Beautiful Soup and scikit-learn.",
+      title: "Housing Scraper",
+      description: "Web scraper that collects and categorizes house listings from specified sources using Beautiful Soup, Requests, Pandas, and scikit-learn.",
       category: "scraping",
-      github: "https://github.com/username/news-aggregator",
-      tags: ["Python", "BeautifulSoup", "scikit-learn"]
+      github: "https://github.com/etiennegalea/housing-scraper",
+      tags: ["Python", "BeautifulSoup", "scikit-learn", "Docker"]
     },
     {
-      title: "Distributed Task Queue",
-      description: "High-performance task queue system built with Go and Redis for handling millions of background jobs.",
+      title: "GA Knapsack in C++",
+      description: "This code served as a precursor to better understand the inner workings of genetic algorithms by solving the Knapsack problem with a genetic algorithm in C++.",
       category: "engineering",
-      github: "https://github.com/username/task-queue",
-      tags: ["Go", "Redis", "Microservices"]
+      github: "https://github.com/etiennegalea/GA_Knapsack",
+      tags: ["C++", "Genetic AI"]
     },
     {
-      title: "Image Classification API",
-      description: "REST API for real-time image classification using TensorFlow and FastAPI.",
-      category: "ml",
-      github: "https://github.com/username/image-classifier",
-      demo: "https://api-demo.example.com",
-      tags: ["TensorFlow", "FastAPI", "Docker"]
+      title: "AI-vians",
+      description: "A Generative Adversarial Network (GAN) implementation for generating bird images using PyTorch.",
+      category: "dl",
+      github: "https://github.com/etiennegalea/gan_birds",
+      tags: ["Python", "PyTorch", "GAN"]
     }
+    // {
+    //   title: "Image Classification API",
+    //   description: "REST API for real-time image classification using TensorFlow and FastAPI.",
+    //   category: "dl",
+    //   github: "https://github.com/username/image-classifier",
+    //   demo: "https://api-demo.example.com",
+    //   tags: ["TensorFlow", "FastAPI", "Docker"]
+    // }
   ];
 
   const filteredProjects = filter === 'all' 
@@ -78,7 +94,7 @@ const Portfolio = () => {
 
   const getCategoryIcon = (category) => {
     switch(category) {
-      case 'ml':
+      case 'dl':
         return <Brain className="h-6 w-6" />;
       case 'scraping':
         return <Database className="h-6 w-6" />;
@@ -90,7 +106,19 @@ const Portfolio = () => {
   };
 
   return (
-    <div className="portfolio-container min-h-screen p-8">
+    <div className={`portfolio-container min-h-screen p-8 ${isDark ? 'dark bg-gray-900' : 'bg-white'}`}>
+      {/* Theme Toggle Button */}
+      <button
+        onClick={toggleTheme}
+        className="fixed top-4 right-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+        aria-label="Toggle theme"
+      >
+        {isDark ? (
+          <Sun className="h-6 w-6 text-yellow-500" />
+        ) : (
+          <Moon className="h-6 w-6 text-gray-700" />
+        )}
+      </button>
       {/* Header */}
       <header className="max-w-4xl mx-auto text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">Technical Portfolio</h1>
@@ -102,7 +130,7 @@ const Portfolio = () => {
       {/* Filter Controls */}
       <div className="max-w-4xl mx-auto mb-8">
         <div className="flex justify-center gap-4">
-          {['all', 'ml', 'scraping', 'engineering'].map((category) => (
+          {['all', 'dl', 'scraping', 'engineering'].map((category) => (
             <button
               key={category}
               onClick={() => setFilter(category)}
@@ -111,7 +139,7 @@ const Portfolio = () => {
               }`}
             >
               {category === 'all' ? 'All Projects' : 
-               category === 'ml' ? 'Machine Learning' :
+               category === 'dl' ? 'Deep Learning' :
                category === 'scraping' ? 'Web Scraping' : 'Engineering'}
             </button>
           ))}
