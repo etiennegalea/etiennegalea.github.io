@@ -106,7 +106,7 @@ const Portfolio = () => {
   };
 
   return (
-    <div className={`portfolio-container min-h-screen p-8 ${isDark ? 'dark bg-gray-900' : 'bg-white'}`}>
+    <div className={`portfolio-container min-h-screen p-8 ${isDark ? 'dark bg-cyan-950' : 'bg-white'}`}>
       {/* Theme Toggle Button */}
       <button
         onClick={toggleTheme}
@@ -121,8 +121,8 @@ const Portfolio = () => {
       </button>
       {/* Header */}
       <header className="max-w-4xl mx-auto text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">Technical Portfolio</h1>
-        <p className="text-xl text-gray-600 mb-8">
+        <h1 className={`text-4xl font-bold mb-4 ${isDark ? 'text-zinc-50' : 'text-black'}`}>Technical Portfolio</h1>
+        <p className={`text-xl mb-8 ${isDark ? 'text-zinc-50' : 'text-gray-600'}`}>
           Specializing in Machine Learning, Web Scraping, and Software Engineering
         </p>
       </header>
@@ -162,7 +162,7 @@ const Portfolio = () => {
                 {project.tags.map((tag, tagIndex) => (
                   <span 
                     key={tagIndex}
-                    className="tag px-2 py-1 bg-gray-100 text-sm rounded-full"
+                    className={`tag px-2 py-1 bg-gray-100 text-sm rounded-full ${isDark ? 'text-gray-900' : 'text-black'}`}
                   >
                     {tag}
                   </span>
@@ -173,7 +173,7 @@ const Portfolio = () => {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="project-link flex items-center gap-2 text-gray-600 hover:text-blue-600"
+                  className={`project-link flex items-center gap-2 hover:text-blue-600 ${isDark ? 'text-zinc-50' : 'text-gray'}`}
                 >
                   <Github className="h-5 w-5" />
                   Code
@@ -183,7 +183,7 @@ const Portfolio = () => {
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="project-link flex items-center gap-2 text-gray-600 hover:text-blue-600"
+                    className={`project-link flex items-center gap-2 hover:text-blue-600 ${isDark ? 'text-zinc-50' : 'text-gray'}`}
                   >
                     <ExternalLink className="h-5 w-5" />
                     Live Demo
