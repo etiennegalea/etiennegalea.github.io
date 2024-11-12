@@ -106,7 +106,7 @@ const Portfolio = () => {
   };
 
   return (
-    <div className={`portfolio-container min-h-screen p-8 ${isDark ? 'dark bg-cyan-950' : 'bg-white'}`}>
+    <div className={`portfolio-container min-h-screen p-8 ${isDark ? 'dark bg-cyan-950' : 'bg-slate-50'}`}>
       {/* Theme Toggle Button */}
       <button
         onClick={toggleTheme}
@@ -126,6 +126,34 @@ const Portfolio = () => {
           Specializing in Machine Learning, Web Scraping, and Software Engineering
         </p>
       </header>
+
+      {/* About Me Section */}
+      <section className="max-w-4xl mx-auto mb-16">
+        <Card className="about-card">
+          <CardContent>
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <div className="w-48 h-48 rounded-full overflow-hidden">
+                <img
+                  src="/profile-pic.jpg"
+                  alt="Profile"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex-1 text-center md:text-left">
+                <h2 className={`text-2xl font-bold mb-4 ${isDark ? 'text-zinc-50' : 'text-black'}`}>
+                  Hi, I'm Etienne 👋
+                </h2>
+                <p className={`mb-4 ${isDark ? 'text-zinc-50' : 'text-gray-600'}`}>
+                  I'm a Machine Learning Engineer passionate about developing AI solutions that make a difference. With expertise in deep learning, data engineering, and software development, I focus on creating efficient and scalable solutions.
+                </p>
+                <p className={`${isDark ? 'text-zinc-50' : 'text-gray-600'}`}>
+                  Currently working on advanced ML projects while exploring new technologies in computer vision and natural language processing.
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
 
       {/* Filter Controls */}
       <div className="max-w-4xl mx-auto mb-8">
@@ -194,6 +222,45 @@ const Portfolio = () => {
           </Card>
         ))}
       </div>
+      {/* Contact Footer */}
+      <footer className="max-w-4xl mx-auto mt-16 text-center">
+        <div className={`p-8 rounded-lg ${isDark ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-800'}`}>
+          <h2 className="text-2xl font-bold mb-4">Let's Connect</h2>
+          <p className="mb-6">I'm always interested in new opportunities and collaborations</p>
+          <div className="flex justify-center gap-6">
+            <a
+              href="mailto:egalea.11@gmail.com"
+              className="flex items-center gap-2 hover:text-blue-600 transition-colors"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              Email
+            </a>
+            <a
+              href="https://github.com/etiennegalea"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:text-blue-600 transition-colors"
+            >
+              <Github className="h-6 w-6" />
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/etienne-galea-1265b791/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:text-blue-600 transition-colors"
+            >
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </footer>
+
     </div>
   );
 };
