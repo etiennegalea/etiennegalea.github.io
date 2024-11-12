@@ -157,18 +157,18 @@ const Portfolio = () => {
 
       {/* Filter Controls */}
       <div className="max-w-4xl mx-auto mb-8">
-        <div className="flex justify-center gap-4">
+        <div className="flex justify-start gap-4 overflow-x-auto pb-2 px-4 scrollbar-hide">
           {['all', 'dl', 'scraping', 'engineering'].map((category) => (
             <button
               key={category}
               onClick={() => setFilter(category)}
-              className={`filter-button px-4 py-2 rounded-lg ${
+              className={`filter-button px-4 py-2 rounded-lg whitespace-nowrap flex-shrink-0 ${
                 filter === category ? 'bg-blue-600 text-white active' : 'bg-white'
               }`}
             >
               {category === 'all' ? 'All Projects' : 
-               category === 'dl' ? 'Deep Learning' :
-               category === 'scraping' ? 'Web Scraping' : 'Engineering'}
+              category === 'dl' ? 'Deep Learning' :
+              category === 'scraping' ? 'Web Scraping' : 'Engineering'}
             </button>
           ))}
         </div>
@@ -227,10 +227,10 @@ const Portfolio = () => {
         <div className={`p-8 rounded-lg ${isDark ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-800'}`}>
           <h2 className="text-2xl font-bold mb-4">Let's Connect</h2>
           <p className="mb-6">I'm always interested in new opportunities and collaborations</p>
-          <div className="flex justify-center gap-6">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
             <a
               href="mailto:egalea.11@gmail.com"
-              className="flex items-center gap-2 hover:text-blue-600 transition-colors"
+              className="flex items-center justify-center gap-2 hover:text-blue-600 transition-colors"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -241,7 +241,7 @@ const Portfolio = () => {
               href="https://github.com/etiennegalea"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:text-blue-600 transition-colors"
+              className="flex items-center justify-center gap-2 hover:text-blue-600 transition-colors"
             >
               <Github className="h-6 w-6" />
               GitHub
@@ -250,7 +250,7 @@ const Portfolio = () => {
               href="https://www.linkedin.com/in/etienne-galea-1265b791/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:text-blue-600 transition-colors"
+              className="flex items-center justify-center gap-2 hover:text-blue-600 transition-colors"
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
