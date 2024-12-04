@@ -58,6 +58,13 @@ const Portfolio = () => {
       tags: ["PyTorch", "Deep Learning", "self-supervised", "EEG"]
     },
     {
+      title: "Bird Stream",
+      description: "A video livestream built to run on a raspberry pi to capture video content of birds feeding (intend to serve as a backbone for additional AI projects).",
+      category: "engineering",
+      github: "https://github.com/etiennegalea/bird-stream",
+      tags: ["Python", "React", "FastAPI", "Docker", "Cloudflare"]
+    },
+    {
       title: "Housing Scraper",
       description: "Web scraper that collects and categorizes house listings from specified sources using Beautiful Soup, Requests, Pandas, and scikit-learn.",
       category: "scraping",
@@ -65,18 +72,18 @@ const Portfolio = () => {
       tags: ["Python", "BeautifulSoup", "scikit-learn", "Docker"]
     },
     {
-      title: "GA Knapsack in C++",
-      description: "This code served as a precursor to better understand the inner workings of genetic algorithms by solving the Knapsack problem with a genetic algorithm in C++.",
-      category: "engineering",
-      github: "https://github.com/etiennegalea/GA_Knapsack",
-      tags: ["C++", "Genetic AI"]
-    },
-    {
       title: "AI-vians",
       description: "A Generative Adversarial Network (GAN) implementation for generating bird images using PyTorch.",
       category: "dl",
       github: "https://github.com/etiennegalea/gan_birds",
       tags: ["Python", "PyTorch", "GAN"]
+    },
+    {
+      title: "GA Knapsack in C++",
+      description: "This code served as a precursor to better understand the inner workings of genetic algorithms by solving the Knapsack problem with a genetic algorithm in C++.",
+      category: "engineering",
+      github: "https://github.com/etiennegalea/GA_Knapsack",
+      tags: ["C++", "Genetic AI"]
     }
     // {
     //   title: "Image Classification API",
