@@ -84,6 +84,13 @@ const Portfolio = () => {
       category: "engineering",
       github: "https://github.com/etiennegalea/GA_Knapsack",
       tags: ["C++", "Genetic AI"]
+    },
+    {
+      title: "Bird-Stream",
+      description: "Live video stream of birds feeding using a raspberry pi, websocket/webrtc, and a lot of bird seed.",
+      category: "engineering",
+      github: "https://github.com/etiennegalea/bird-stream",
+      tags: ["Python", "React", "FastAPI", "Docker", "WebSockets"]
     }
     // {
     //   title: "Image Classification API",
