@@ -58,13 +58,6 @@ const Portfolio = () => {
       tags: ["PyTorch", "Deep Learning", "self-supervised", "EEG"]
     },
     {
-      title: "Bird Stream",
-      description: "A video livestream built to run on a raspberry pi to capture video content of birds feeding (intend to serve as a backbone for additional AI projects).",
-      category: "engineering",
-      github: "https://github.com/etiennegalea/bird-stream",
-      tags: ["Python", "React", "FastAPI", "Docker", "Cloudflare"]
-    },
-    {
       title: "Housing Scraper",
       description: "Web scraper that collects and categorizes house listings from specified sources using Beautiful Soup, Requests, Pandas, and scikit-learn.",
       category: "scraping",
