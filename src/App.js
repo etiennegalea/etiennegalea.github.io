@@ -148,7 +148,7 @@ const Portfolio = () => {
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="w-48 h-48 rounded-full overflow-hidden">
                 <img
-                  src="/profile-pic.jpg"
+                  src="/profile-pic.png"
                   alt="Profile"
                   className="w-full h-full object-cover"
                 />
