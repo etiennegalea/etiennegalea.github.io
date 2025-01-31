@@ -151,7 +151,8 @@ const Portfolio = () => {
                   Hi, I'm Etienne 👋
                 </h2>
                 <p className={`mb-4 ${isDark ? 'text-zinc-50' : 'text-gray-600'}`}>
-                  I'm a Machine Learning Engineer passionate about developing AI solutions that make a difference. With expertise in deep learning, data engineering, and software development, I focus on creating efficient and scalable solutions.
+                  I'm a Software Engineer passionate about building and developing AI solutions. With expertise in deep learning, data engineering, and software development, I focus on creating efficient and scalable solutions.
+                  Here you can find some of my personal projects where I explore new technologies and build AI solutions.
                 </p>
                 <p className={`${isDark ? 'text-zinc-50' : 'text-gray-600'}`}>
                   Currently working on advanced ML projects while exploring new technologies in computer vision and natural language processing.
