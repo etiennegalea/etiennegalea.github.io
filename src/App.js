@@ -155,7 +155,7 @@ const Portfolio = () => {
                   Here you can find some of my personal projects where I explore new technologies and build AI solutions.
                 </p>
                 <p className={`${isDark ? 'text-zinc-50' : 'text-gray-600'}`}>
-                  Currently working on advanced ML projects while exploring new technologies in computer vision and natural language processing.
+                  Currently working on advanced ML projects while exploring new technologies in computer vision and generative AI.
                 </p>
               </div>
             </div>
