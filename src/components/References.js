@@ -14,20 +14,20 @@ const References = () => {
   ];
 
   return (
-    <div className="references-container">
-      {references.map((ref, index) => (
+    <div className="max-w-4xl mx-auto mb-8 references-container">
+    {references.map((ref, index) => (
         <div key={index} className="reference-card">
-          <div className="reference-header">
+        <div className="reference-header">
             <h3>{ref.name}</h3>
             <p className="reference-title">{ref.position}</p>
             <p className="reference-company">{ref.company}</p>
-          </div>
-          <div className="reference-content">
+        </div>
+        <div className="reference-content">
             <p>{ref.reference}</p>
             <p className="reference-contact">{ref.contact}</p>
-          </div>
         </div>
-      ))}
+        </div>
+    ))}
     </div>
   );
 };
