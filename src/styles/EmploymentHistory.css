@@ -1,45 +1,103 @@
 .employment-history {
   padding: 2rem;
-  max-width: 800px;
+  max-width: 4xl;
   margin: 0 auto;
+  position: relative;
 }
 
-.experience-item {
+.timeline-container {
+  position: relative;
+  padding-left: 6rem;
+}
+
+.timeline-item {
   display: flex;
-  margin-bottom: 2rem;
   position: relative;
+  margin-bottom: 2rem;
 }
 
-.timeline {
-  position: relative;
+.timeline-marker {
+  position: absolute;
+  left: -4rem;
+  top: 1.5rem;
+  bottom: 0;
   width: 24px;
-  margin-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .timeline-dot {
-  width: 12px;
-  height: 12px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  background-color: var(--text-color);
+  background-color: #1f2937;
+  border: 2px solid #fff;
   position: relative;
   z-index: 2;
 }
 
+.dark .timeline-dot {
+  border-color: #1f2937;
+  background-color: #e5e7eb;
+}
+
 .timeline-dot.current {
   background-color: #4CAF50;
+  border-color: #fff;
   animation: pulse 2s infinite;
+}
+
+.dark .timeline-dot.current {
+  border-color: #1f2937;
 }
 
 .timeline-line {
   position: absolute;
-  top: 12px;
-  left: 5px;
-  width: 2px;
-  height: calc(100% + 2rem);
-  background: linear-gradient(to bottom, var(--text-color) 50%, transparent 50%);
-  background-size: 8px 8px;
-  background-repeat: repeat-y;
+  top: 31px;
+  left: 10px;
+  width: 3px;
+  height: calc(200% + 1rem);
+  /* background: repeating-linear-gradient(
+    to bottom,
+    #1f2937 0,
+    #1f2937 4px,
+    transparent 4px,
+    transparent 8px
+  ); */
 }
+
+.dark .timeline-line {
+  /* background: repeating-linear-gradient(
+    to bottom,
+    #e5e7eb 0,
+    #e5e7eb 4px,
+    transparent 4px,
+    transparent 8px
+  ); */
+  position: absolute;
+  top: 31px;
+  left: 10px;
+  width: 3px;
+  height: calc(200% + 1rem);
+}
+
+.experience-card {
+  flex: 1;
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.dark .experience-card {
+  background-color: #1f2937;
+}
+
+/* .experience-card:hover {
+  transform: translateY(-5px);
+} */
 
 @keyframes pulse {
   0% {
@@ -71,4 +129,15 @@
   color: var(--text-secondary);
   font-size: 0.9rem;
   margin: 0.25rem 0;
-} 
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .timeline-dot:not(.current) {
+        background-color: #e5e7eb; /* light dot in dark mode */
+    }
+
+    .timeline-line {
+        background: linear-gradient(to bottom, #e5e7eb 50%, transparent 50%);
+    }
+}
