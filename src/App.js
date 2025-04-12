@@ -4,7 +4,7 @@ import './styles/animations.css';
 import './styles/App.css';
 import References from './components/References';
 import Certificates from './components/Certificates';
-import EmploymentHistory from './components/EmploymentHistory';
+import ExperienceEducation from './components/ExperienceEducation';
 
 const Card = ({ children, className }) => {
   return (
@@ -39,7 +39,7 @@ const Portfolio = () => {
   const [activeTab, setActiveTab] = useState('portfolio');
   const [visibleTabs, setVisibleTabs] = useState({
     portfolio: true,
-    employment: true,
+    experience: true,
     references: true,
     certificates: true
   });
@@ -124,7 +124,7 @@ const Portfolio = () => {
 
   const tabs = [
     { id: 'portfolio', label: 'Portfolio' },
-    { id: 'employment', label: 'Employment History' },
+    { id: 'experience', label: 'Experience & Education' },
     { id: 'references', label: 'References' },
     { id: 'certificates', label: 'Certificates' }
   ];
@@ -269,8 +269,8 @@ const Portfolio = () => {
           </div>
         )}
         
-        {activeTab === 'employment' && visibleTabs.employment && (
-          <EmploymentHistory />
+        {activeTab === 'experience' && visibleTabs.experience && (
+          <ExperienceEducation />
         )}
         
         {activeTab === 'references' && visibleTabs.references && (
