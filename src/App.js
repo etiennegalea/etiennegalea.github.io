@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Github, ExternalLink, Code, Database, Brain, Sun, Moon } from 'lucide-react';
 import './styles/animations.css';
-
+import './styles/App.css';
+import References from './components/References';
+import Certificates from './components/Certificates';
+import EmploymentHistory from './components/EmploymentHistory';
 
 const Card = ({ children, className }) => {
   return (
@@ -33,6 +36,13 @@ const Portfolio = () => {
   const [filter, setFilter] = useState('all');
   const [isLoading, setIsLoading] = useState(true);
   const [isDark, setIsDark] = useState(false);
+  const [activeTab, setActiveTab] = useState('portfolio');
+  const [visibleTabs, setVisibleTabs] = useState({
+    portfolio: true,
+    employment: true,
+    references: true,
+    certificates: true
+  });
   
   useEffect(() => {
     // Simulate loading state
@@ -112,8 +122,16 @@ const Portfolio = () => {
     }
   };
 
+  const tabs = [
+    { id: 'portfolio', label: 'Portfolio' },
+    { id: 'employment', label: 'Employment History' },
+    { id: 'references', label: 'References' },
+    { id: 'certificates', label: 'Certificates' }
+  ];
+
   return (
     <div className={`portfolio-container min-h-screen p-8 ${isDark ? 'dark bg-cyan-950' : 'bg-slate-50'}`}>
+
       {/* Theme Toggle Button */}
       <button
         onClick={toggleTheme}
@@ -127,15 +145,15 @@ const Portfolio = () => {
         )}
       </button>
       {/* Header */}
-      <header className="max-w-4xl mx-auto text-center mb-12">
+      {/* <header className="max-w-4xl mx-auto text-center mb-12">
         <h1 className={`text-4xl font-bold mb-4 ${isDark ? 'text-zinc-50' : 'text-black'}`}>Technical Portfolio</h1>
         <p className={`text-xl mb-8 ${isDark ? 'text-zinc-50' : 'text-gray-600'}`}>
           Specializing in Machine Learning, Web Scraping, and Software Engineering
         </p>
-      </header>
+      </header> */}
 
       {/* About Me Section */}
-      <section className="max-w-4xl mx-auto mb-16">
+      <section className="max-w-4xl mx-auto">
         <Card className="about-card">
           <CardContent>
             <div className="flex flex-col md:flex-row items-center gap-8">
@@ -163,73 +181,108 @@ const Portfolio = () => {
         </Card>
       </section>
 
-      {/* Filter Controls */}
-      <div className="max-w-4xl mx-auto mb-8">
-        <div className="flex justify-start gap-4 overflow-x-auto pb-2 px-4 scrollbar-hide">
-          {['all', 'dl', 'scraping', 'engineering'].map((category) => (
-            <button
-              key={category}
-              onClick={() => setFilter(category)}
-              className={`filter-button px-4 py-2 rounded-lg whitespace-nowrap flex-shrink-0 ${
-                filter === category ? 'bg-blue-600 text-white active' : 'bg-white'
-              }`}
-            >
-              {category === 'all' ? 'All Projects' : 
-              category === 'dl' ? 'Deep Learning' :
-              category === 'scraping' ? 'Web Scraping' : 'Engineering'}
-            </button>
-          ))}
-        </div>
-      </div>
 
-      {/* Projects Grid */}
-      <div className="projects-grid max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-        {filteredProjects.map((project, index) => (
-          <Card key={index} className={`project-card bg-white ${isLoading ? 'loading' : ''}`}>
-            <CardHeader>
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-xl font-bold">{project.title}</CardTitle>
-                {getCategoryIcon(project.category)}
-              </div>
-              <CardDescription>{project.description}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tags.map((tag, tagIndex) => (
-                  <span 
-                    key={tagIndex}
-                    className={`tag px-2 py-1 bg-gray-100 text-sm rounded-full ${isDark ? 'text-gray-900' : 'text-black'}`}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <div className="flex gap-4">
-                <a 
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`project-link flex items-center gap-2 hover:text-blue-600 ${isDark ? 'text-zinc-50' : 'text-gray'}`}
-                >
-                  <Github className="h-5 w-5" />
-                  Code
-                </a>
-                {project.demo && (
-                  <a 
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`project-link flex items-center gap-2 hover:text-blue-600 ${isDark ? 'text-zinc-50' : 'text-gray'}`}
-                  >
-                    <ExternalLink className="h-5 w-5" />
-                    Live Demo
-                  </a>
-                )}
-              </div>
-            </CardContent>
-          </Card>
+      <div className="tab-navigation max-w-4xl mx-auto">
+        {tabs.map(tab => (
+          visibleTabs[tab.id] && (
+            <button
+              key={tab.id}
+              className={`tab-button ${activeTab === tab.id ? 'active' : ''}`}
+              onClick={() => setActiveTab(tab.id)}
+            >
+              {tab.label}
+            </button>
+          )
         ))}
       </div>
+
+      <div className="tab-content">
+        {activeTab === 'portfolio' && visibleTabs.portfolio && (
+          <div className="portfolio-section">
+            {/* Filter Controls */}
+            <div className="max-w-4xl mx-auto mb-8">
+              <div className="flex justify-start gap-4 overflow-x-auto pb-2 px-4 scrollbar-hide">
+                {['all', 'dl', 'scraping', 'engineering'].map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => setFilter(category)}
+                    className={`filter-button px-4 py-2 rounded-lg whitespace-nowrap flex-shrink-0 ${
+                      filter === category ? 'bg-blue-600 text-white active' : 'bg-white'
+                    }`}
+                  >
+                    {category === 'all' ? 'All Projects' : 
+                    category === 'dl' ? 'Deep Learning' :
+                    category === 'scraping' ? 'Web Scraping' : 'Engineering'}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Projects Grid */}
+            <div className="projects-grid max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+              {filteredProjects.map((project, index) => (
+                <Card key={index} className={`project-card bg-white ${isLoading ? 'loading' : ''}`}>
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="text-xl font-bold">{project.title}</CardTitle>
+                      {getCategoryIcon(project.category)}
+                    </div>
+                    <CardDescription>{project.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.tags.map((tag, tagIndex) => (
+                        <span 
+                          key={tagIndex}
+                          className={`tag px-2 py-1 bg-gray-100 text-sm rounded-full ${isDark ? 'text-gray-900' : 'text-black'}`}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex gap-4">
+                      <a 
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`project-link flex items-center gap-2 hover:text-blue-600 ${isDark ? 'text-zinc-50' : 'text-gray'}`}
+                      >
+                        <Github className="h-5 w-5" />
+                        Code
+                      </a>
+                      {project.demo && (
+                        <a 
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`project-link flex items-center gap-2 hover:text-blue-600 ${isDark ? 'text-zinc-50' : 'text-gray'}`}
+                        >
+                          <ExternalLink className="h-5 w-5" />
+                          Live Demo
+                        </a>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        )}
+        
+        {activeTab === 'employment' && visibleTabs.employment && (
+          <EmploymentHistory />
+        )}
+        
+        {activeTab === 'references' && visibleTabs.references && (
+          <References />
+        )}
+        
+        {activeTab === 'certificates' && visibleTabs.certificates && (
+          <Certificates />
+        )}
+      </div>
+
+
       {/* Contact Footer */}
       <footer className="max-w-4xl mx-auto mt-16 text-center">
         <div className={`p-8 rounded-lg ${isDark ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-800'}`}>
@@ -279,7 +332,6 @@ const Portfolio = () => {
           </div>
         </div>
       </footer>
-
     </div>
   );
 };
