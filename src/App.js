@@ -5,6 +5,7 @@ import './styles/App.css';
 import References from './components/References';
 import Certificates from './components/Certificates';
 import ExperienceEducation from './components/ExperienceEducation';
+import StarsBackground from './components/StarsBackground';
 
 const Card = ({ children, className }) => {
   return (
@@ -141,8 +142,8 @@ const Portfolio = () => {
 
   return (
     <>
-      <div className={`portfolio-container min-h-screen p-8 ${isDark 
-        ? 'dark bg-gradient-to-br from-cyan-950 from-70% to-[#062836]' /* Dark mode: cyan-950 to darker cyan */
+      <div className={`portfolio-container relative z-10 min-h-screen p-8 ${isDark 
+        ? 'dark bg-gradient-to-br from-cyan-950 from-70% to-[#051b25]' /* Dark mode: cyan-950 to darker cyan */
         : 'bg-gradient-to-br from-slate-50 from-70% to-slate-200' /* Light mode: slate-50 to slate-200 */
       }`}>
 
@@ -248,7 +249,10 @@ const Portfolio = () => {
                       onClick={() => setFilter(category)}
                       className={`filter-button px-4 py-2 rounded-lg whitespace-nowrap flex-shrink-0 transition-colors ${
                         filter === category 
-                          ? 'bg-blue-600 text-white shadow-md'
+                          ? (isDark 
+                              ? 'bg-gray-800 text-white shadow-md'
+                              : 'bg-blue-600 text-white shadow-md'
+                            )
                           : isDark 
                             ? 'bg-gray-700 text-gray-200 hover:bg-gray-600'
                             : 'bg-white text-gray-800 hover:bg-gray-100 shadow-sm'
@@ -379,6 +383,9 @@ const Portfolio = () => {
           </div>
         </footer>
       </div>
+
+      {/* Render Stars Background only in Dark Mode */}
+      {isDark && <StarsBackground numberOfStars={150} />}
 
       {/* Fixed Buttons Container (Moved Outside) */}
       <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-3">
