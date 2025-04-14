@@ -162,7 +162,7 @@ const Portfolio = () => {
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="w-48 h-48 rounded-full overflow-hidden">
                 <img
-                  src="/profile-pic.png"
+                  src="/people/me.png"
                   alt="Profile"
                   className="w-full h-full object-cover"
                 />
@@ -255,8 +255,12 @@ const Portfolio = () => {
                   <button
                     key={category}
                     onClick={() => setFilter(category)}
-                    className={`filter-button px-4 py-2 rounded-lg whitespace-nowrap flex-shrink-0 ${
-                      filter === category ? 'bg-blue-600 text-white active' : 'bg-white'
+                    className={`filter-button px-4 py-2 rounded-lg whitespace-nowrap flex-shrink-0 transition-colors ${
+                      filter === category 
+                        ? 'bg-blue-600 text-white shadow-md'
+                        : isDark 
+                          ? 'bg-gray-700 text-gray-200 hover:bg-gray-600'
+                          : 'bg-white text-gray-800 hover:bg-gray-100 shadow-sm'
                     }`}
                   >
                     {category === 'all' ? 'All Projects' : 
@@ -283,7 +287,9 @@ const Portfolio = () => {
                       {project.tags.map((tag, tagIndex) => (
                         <span 
                           key={tagIndex}
-                          className={`tag px-2 py-1 bg-gray-100 text-sm rounded-full ${isDark ? 'text-gray-900' : 'text-black'}`}
+                          className={`tag px-2 py-1 text-sm rounded-md ${isDark 
+                            ? 'bg-gray-700 text-gray-200' 
+                            : 'bg-gray-200 text-gray-800'}`}
                         >
                           {tag}
                         </span>

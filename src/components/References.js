@@ -4,7 +4,7 @@ import '../styles/References.css';
 const References = () => {
   const references = [
     {
-      img: "/references/ian_mamo.jpg",
+      img: "/people/ian_mamo.jpg",
       name: "Ian Mamo",
       position: "Technical Operations Manager",
       company: "Betsson Group",
@@ -17,7 +17,7 @@ const References = () => {
       contact: "ianmamo@gmail.com"
     },
     {
-      img:"/references/ostfalia_university_logo.jpeg",
+      img:"/organizations/ostfalia.jpeg",
       name: "Günter Kircher",
       position: "i.A. Dipl.-Ing.",
       company: "Ostfalia University",

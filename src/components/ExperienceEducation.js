@@ -4,6 +4,7 @@ import '../styles/ExperienceEducation.css';
 const EmploymentHistory = () => {
     const experience = [
         {
+            img: "/organizations/ready_education.jpg",
             company: "Ready Education",
             position: "Back End Engineer / Data Scientist",
             period: "July 2022 - Jan 2025",
@@ -16,6 +17,7 @@ const EmploymentHistory = () => {
             tags: ["Python", "AWS Lambda", "Grafana", "Amazon S3", "Amazon Athena", "SQLAlchemy", "MySQL", "Flask", "docker"]
         },
         {
+            img: "/organizations/cncr.png",
             company: "CNCR - Center for Neurogenomics & Cognitive Research",
             position: "Deep Learning Researcher (Internship)",
             period: "January 2021 - June 2022",
@@ -24,6 +26,7 @@ const EmploymentHistory = () => {
             tags: ["Data Science", "Python", "Deep Learning", "EEG"]
         },
         {
+            img: "/organizations/vu.png",
             company: "Vrije Universiteit, Amsterdam",
             position: "Teaching Assistant",
             period: "November 2020 - April 2021",
@@ -32,6 +35,7 @@ const EmploymentHistory = () => {
             tags: ["python", "NAO-bot", "nlp", "scraping"]
         },
         {
+            img: "/organizations/betsson.png",
             company: "Betsson Group",
             position: "Fullstack Engineer",
             period: "October 2017 - July 2020",
@@ -40,6 +44,7 @@ const EmploymentHistory = () => {
             tags: ["html5", "css3", "js", "mysql", "laravel"]
         },
         {
+            img: "/organizations/ostfalia.jpeg",
             company: "Ostfalia University",
             position: "Software Engineer",
             period: "July 2017 - September 2017",
@@ -51,6 +56,7 @@ const EmploymentHistory = () => {
 
     const education = [
         {
+            img: "/organizations/vu.png",
             academy: "Vrije Universiteit, Amsterdam",
             course: "Master in Artificial Intelligence & Cognitive Science",
             period: "August 2019 - June 2022",
@@ -60,6 +66,7 @@ const EmploymentHistory = () => {
             isCurrent: false
         },
         {
+            img: "/organizations/uom.png",
             academy: "Universita ta` Malta",
             course: "Bachelors in Software Engineering",
             period: "August 2014 - June 2017",
@@ -82,10 +89,17 @@ const EmploymentHistory = () => {
                                 {index !== experience.length - 1 && <div className="timeline-line" />}
                             </div>
                             <div className="experience-card">
-                                <div className="mb-4">
-                                    <h3 className="text-xl font-bold text-black dark:text-white">{exp.company}</h3>
-                                    <h4 className="text-lg text-gray-700 dark:text-gray-300">{exp.position}</h4>
-                                    <p className="text-gray-600 dark:text-gray-400">{exp.period}</p>
+                                <div className="experience-card-header mb-4">
+                                    {exp.img && (
+                                        <div className="experience-logo">
+                                            <img src={exp.img} alt={`${exp.company} logo`} />
+                                        </div>
+                                    )}
+                                    <div className="experience-header-info">
+                                        <h3 className="text-xl font-bold text-black dark:text-white">{exp.company}</h3>
+                                        <h4 className="text-lg text-gray-700 dark:text-gray-300">{exp.position}</h4>
+                                        <p className="text-gray-600 dark:text-gray-400">{exp.period}</p>
+                                    </div>
                                 </div>
                                 <div className="experience-content">
                                     {exp.description.map((para, i) => (
@@ -120,10 +134,17 @@ const EmploymentHistory = () => {
                                 {index !== education.length - 1 && <div className="timeline-line" />}
                             </div>
                             <div className="experience-card">
-                                <div className="mb-4">
-                                    <h3 className="text-xl font-bold text-black dark:text-white">{ed.academy}</h3>
-                                    <h4 className="text-lg text-gray-700 dark:text-gray-300">{ed.course}</h4>
-                                    <p className="text-gray-600 dark:text-gray-400">{ed.period}</p>
+                                <div className="experience-card-header mb-4">
+                                    {ed.img && (
+                                        <div className="experience-logo">
+                                            <img src={ed.img} alt={`${ed.academy} logo`} />
+                                        </div>
+                                    )}
+                                    <div className="experience-header-info">
+                                        <h3 className="text-xl font-bold text-black dark:text-white">{ed.academy}</h3>
+                                        <h4 className="text-lg text-gray-700 dark:text-gray-300">{ed.course}</h4>
+                                        <p className="text-gray-600 dark:text-gray-400">{ed.period}</p>
+                                    </div>
                                 </div>
                                 <div className="experience-content">
                                     {ed.description.map((para, i) => (
