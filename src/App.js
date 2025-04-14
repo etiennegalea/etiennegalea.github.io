@@ -142,10 +142,13 @@ const Portfolio = () => {
 
   return (
     <>
-      <div className={`portfolio-container relative z-10 min-h-screen p-8 ${isDark 
-        ? 'dark bg-gradient-to-br from-cyan-950 from-70% to-[#051b25]' /* Dark mode: cyan-950 to darker cyan */
-        : 'bg-gradient-to-br from-slate-50 from-70% to-slate-200' /* Light mode: slate-50 to slate-200 */
+      <div className={`portfolio-container relative min-h-screen p-8 ${isDark 
+        ? 'dark bg-gradient-to-br from-[#0f3343] from-40% to-[#051e29]' /* Dark gradient: cyan-950 to darker cyan */
+        : 'bg-gradient-to-br from-slate-50 from-40% to-slate-300' /* Light mode: slate-50 to slate-200 */
       }`}>
+
+        {/* Render Stars Background only in Dark Mode (Now INSIDE container) */}
+        {isDark && <StarsBackground numberOfStars={200} />}
 
         {/* About Me Section */}
         <section className="max-w-4xl mx-auto">
@@ -383,9 +386,6 @@ const Portfolio = () => {
           </div>
         </footer>
       </div>
-
-      {/* Render Stars Background only in Dark Mode */}
-      {isDark && <StarsBackground numberOfStars={150} />}
 
       {/* Fixed Buttons Container (Moved Outside) */}
       <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-3">
