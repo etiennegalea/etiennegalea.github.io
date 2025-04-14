@@ -19,7 +19,7 @@ const EmploymentHistory = () => {
             company: "CNCR - Center for Neurogenomics & Cognitive Research",
             position: "Deep Learning Researcher (Internship)",
             period: "January 2021 - June 2022",
-            description: ["Researching self-supervised learning for the EEG domain. The purpose was to find and show a trace of generalization in the data since EEG can be very domain-specific. Positive results where found and this generalizations were plotted accordingly (see paper)."],
+            description: ["Researching self-supervised learning for the EEG domain. The purpose was to find and show a trace of generalization in the data since EEG can be very domain-specific. Positive results where found and this generalizations were plotted accordingly."],
             isCurrent: false,
             tags: ["Data Science", "Python", "Deep Learning", "EEG"]
         },
@@ -87,18 +87,20 @@ const EmploymentHistory = () => {
                                     <h4 className="text-lg text-gray-700 dark:text-gray-300">{exp.position}</h4>
                                     <p className="text-gray-600 dark:text-gray-400">{exp.period}</p>
                                 </div>
-                                {exp.description.map((para, i) => (
-                                    <p key={i} className="text-gray-600 dark:text-gray-300 mb-4">{para}</p>
-                                ))}
-                                <div className="flex flex-wrap gap-2">
-                                    {exp.tags.map((tag, tagIndex) => (
-                                        <span 
-                                            key={tagIndex}
-                                            className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-sm rounded-full text-gray-900 dark:text-gray-100"
-                                        >
-                                            {tag}
-                                        </span>
+                                <div className="experience-content">
+                                    {exp.description.map((para, i) => (
+                                        <p key={i} className="text-gray-600 dark:text-gray-300 mb-4">{para}</p>
                                     ))}
+                                    <div className="flex flex-wrap gap-2">
+                                        {exp.tags.map((tag, tagIndex) => (
+                                            <span 
+                                                key={tagIndex}
+                                                className="tag px-2 py-1 bg-gray-100 dark:bg-gray-700 text-sm rounded-full text-gray-900 dark:text-gray-100"
+                                            >
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -111,24 +113,25 @@ const EmploymentHistory = () => {
                     Education
                 </h2>
                 <div className="timeline-container">
-
                     {education.map((ed, index) => (
                         <div key={index} className="timeline-item">
-                        <div className="timeline-marker">
-                            <div className={`timeline-dot ${ed.isCurrent ? 'current' : ''}`} />
-                            {index !== education.length - 1 && <div className="timeline-line" />}
-                        </div>
-                        <div className="experience-card">
-                            <div className="mb-4">
-                                <h3 className="text-xl font-bold text-black dark:text-white">{ed.academy}</h3>
-                                <h4 className="text-lg text-gray-700 dark:text-gray-300">{ed.course}</h4>
-                                <p className="text-gray-600 dark:text-gray-400">{ed.period}</p>
+                            <div className="timeline-marker">
+                                <div className={`timeline-dot ${ed.isCurrent ? 'current' : ''}`} />
+                                {index !== education.length - 1 && <div className="timeline-line" />}
                             </div>
-                            {ed.description.map((para, i) => (
-                                <p key={i} className="text-gray-600 dark:text-gray-300 mb-4">{para}</p>
-                            ))}
+                            <div className="experience-card">
+                                <div className="mb-4">
+                                    <h3 className="text-xl font-bold text-black dark:text-white">{ed.academy}</h3>
+                                    <h4 className="text-lg text-gray-700 dark:text-gray-300">{ed.course}</h4>
+                                    <p className="text-gray-600 dark:text-gray-400">{ed.period}</p>
+                                </div>
+                                <div className="experience-content">
+                                    {ed.description.map((para, i) => (
+                                        <p key={i} className="text-gray-600 dark:text-gray-300 mb-4">{para}</p>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
-                    </div>
                     ))}
                 </div>
             </div>

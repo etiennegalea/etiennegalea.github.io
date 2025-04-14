@@ -129,6 +129,9 @@ const Portfolio = () => {
     { id: 'certificates', label: 'Certificates' }
   ];
 
+  // Add state for mobile menu
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <div className={`portfolio-container min-h-screen p-8 ${isDark ? 'dark bg-cyan-950' : 'bg-slate-50'}`}>
 
@@ -182,18 +185,64 @@ const Portfolio = () => {
       </section>
 
 
-      <div className="tab-navigation max-w-4xl mx-auto">
-        {tabs.map(tab => (
-          visibleTabs[tab.id] && (
-            <button
-              key={tab.id}
-              className={`tab-button ${activeTab === tab.id ? 'active' : ''}`}
-              onClick={() => setActiveTab(tab.id)}
+      {/* Responsive Tab Navigation */}
+      <div className="tab-navigation-container max-w-4xl mx-auto mb-8 rounded-lg">
+        {/* Mobile Tab Selector */}
+        <div className="md:hidden mb-4">
+          <button 
+            className={`w-full p-3 rounded-lg flex justify-between items-center ${isDark ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'}`}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <span>{tabs.find(tab => tab.id === activeTab)?.label || 'Select Tab'}</span>
+            <svg 
+              className={`w-5 h-5 transition-transform ${isMobileMenuOpen ? 'rotate-180' : ''}`} 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
             >
-              {tab.label}
-            </button>
-          )
-        ))}
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          
+          {/* Mobile Dropdown Menu */}
+          {isMobileMenuOpen && (
+            <div className={`mt-2 rounded-lg overflow-hidden ${isDark ? 'bg-gray-800' : 'bg-white'}`}>
+              {tabs.map(tab => (
+                visibleTabs[tab.id] && (
+                  <button
+                    key={tab.id}
+                    className={`w-full p-3 text-left border-b last:border-b-0 ${
+                      activeTab === tab.id 
+                        ? isDark ? 'bg-blue-600 text-white' : 'bg-blue-100 text-blue-800' 
+                        : isDark ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'
+                    }`}
+                    onClick={() => {
+                      setActiveTab(tab.id);
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    {tab.label}
+                  </button>
+                )
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Desktop Tab Navigation */}
+        <div className="hidden md:flex tab-navigation">
+          {tabs.map(tab => (
+            visibleTabs[tab.id] && (
+              <button
+                key={tab.id}
+                className={`tab-button ${activeTab === tab.id ? 'active' : ''}`}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                {tab.label}
+              </button>
+            )
+          ))}
+        </div>
       </div>
 
       <div className="tab-content">

@@ -1,72 +1,115 @@
+/* Certificates Section Styles */
 .certificates-container {
+  padding: 2rem;
+}
+
+.certificates-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+  gap: 1.5rem;
+}
+
+.certificate-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block; /* Make the link block-level to contain the card */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 0.5rem; /* Apply border radius to the link for hover effect */
+}
+
+.certificate-card-link:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Enhanced hover shadow */
 }
 
 .certificate-card {
-  background: var(--bg-secondary);
-  border-radius: 8px;
-  padding: 1.5rem;
+  /* --- Consistent Styling --- */
+  background-color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); 
+  border-radius: 0.5rem;
+  /* --- Card Specific Layout --- */
   display: flex;
-  align-items: flex-start;
-  transition: transform 0.3s ease;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  gap: 1rem;
+  height: 100%; /* Ensure cards in the same row have equal height */
 }
 
-.certificate-card:hover {
-  transform: translateY(-5px);
+/* Dark Mode Styling */
+.dark .certificate-card {
+  background-color: #1f2937; /* Consistent dark background */
+  box-shadow: none; /* Remove default shadow in dark mode */
+}
+
+.dark .certificate-card-link:hover {
+   /* Optional: Add a subtle border or different background on hover for dark mode */
+   background-color: #374151; /* Slightly lighter gray on hover */
+   box-shadow: none;
 }
 
 .certificate-icon {
+  flex-shrink: 0;
   width: 40px;
   height: 40px;
-  margin-right: 1rem;
-  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Optional: Add a background if icons are transparent */
+  /* background-color: #f3f4f6; 
+     border-radius: 50%; */
 }
 
-.cert-svg {
-  width: 100%;
-  height: 100%;
+.certificate-icon img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
-.certificate-content {
-  flex: 1;
-  text-align: left;
+.certificate-info {
+  flex-grow: 1; /* Allow text to take available space */
+  min-width: 0; /* Prevent text overflow issues */
 }
 
-.certificate-content h3 {
-  margin: 0;
-  color: var(--text-color);
+.certificate-title {
+  font-size: 1rem; 
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  /* Inherits dark mode color from parent component */
 }
 
-.issuer {
-  color: var(--text-secondary);
-  margin: 0.5rem 0;
-  font-size: 0.9rem;
+.certificate-issuer {
+  font-size: 0.85rem;
+  /* Inherits dark mode color from parent component */
 }
 
-.date {
-  color: var(--text-color);
-  margin: 0.25rem 0;
-  font-size: 0.9rem;
+.certificate-link-icon {
+  margin-left: auto; /* Push icon to the right */
 }
 
-.credential-id {
-  color: var(--text-secondary);
-  font-size: 0.8rem;
-  margin: 0.5rem 0;
-}
+/* Responsive adjustments for smaller screens */
+@media (max-width: 640px) {
+  .certificates-container {
+    padding: 0;
+  }
+  
+  .certificates-grid {
+    grid-template-columns: 1fr; /* Stack cards vertically on small screens */
+  }
 
-.verify-link {
-  display: inline-block;
-  margin-top: 1rem;
-  color: #4CAF50;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: color 0.3s ease;
-}
+  .certificate-card {
+    padding: 0.75rem 1rem;
+  }
 
-.verify-link:hover {
-  color: #45a049;
-  text-decoration: underline;
+  .certificate-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .certificate-title {
+    font-size: 0.95rem;
+  }
+
+  .certificate-issuer {
+    font-size: 0.8rem;
+  }
 }
