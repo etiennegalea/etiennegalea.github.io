@@ -32,6 +32,18 @@ const References = () => {
       ],
       contact: "guenter.kircher@ostfalia.de"
     },
+    {
+      img: "/people/ryan_aquilina.jpeg",
+      name: "Ryan Aquilina",
+      position: "Head of Mobile",
+      company: "RentProfile",
+      reference: [
+        "I have been working as a professional software developer for the past 5 years. My role involves managing a team of developers whilst overseeing a number of different employee’s work. I would gladly and highly recommend Etienne for a position in software development and software related projects.",
+        "I have had the opportunity to work with Etienne on various projects throughout the years. The first time I worked with him was when we were both studying for our Bachelor of Science (Hons.) in IT Software Development, where we both worked together on our assigned projects. Most recently, I have had the opportunity to work with Etienne when we were both employed at KPMG Crimsonwing, where we were tasked to support new and existing ERP systems. I found Etienne to be very dependable, smart, creative and a great problem-solver throughout.",
+        "I believe that Etienne would be an excellent addition to any business. I’ve been consistently impressed with his problem-solving skills and his ease at addressing problems. Moreover, Etienne always showed excellent critical-thinking skills, most notably during the development of software projects. Etienne shows competence in designing and developing software, keeping in mind both the software and business requirements. I believe that an employee with such skills is valuable to any business or project."
+      ],
+      contact: "ryan@rentprofile.com"
+    },
   ];
 
   // Helper function to check if a string starts with a bullet point
