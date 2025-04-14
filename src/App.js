@@ -141,7 +141,10 @@ const Portfolio = () => {
 
   return (
     <>
-      <div className={`portfolio-container min-h-screen p-8 ${isDark ? 'dark bg-cyan-950' : 'bg-slate-50'}`}>
+      <div className={`portfolio-container min-h-screen p-8 ${isDark 
+        ? 'dark bg-gradient-to-br from-cyan-950 from-70% to-[#062836]' /* Dark mode: cyan-950 to darker cyan */
+        : 'bg-gradient-to-br from-slate-50 from-70% to-slate-200' /* Light mode: slate-50 to slate-200 */
+      }`}>
 
         {/* About Me Section */}
         <section className="max-w-4xl mx-auto">
