@@ -4,6 +4,17 @@ import '../styles/ExperienceEducation.css';
 const EmploymentHistory = () => {
     const experience = [
         {
+            img: "/organizations/isispace.png",
+            company: "ISISpace Group",
+            position: "Software Engineer",
+            period: "May 2025",
+            description: [
+                "Maintain and improve mission control software stack for satellite operations in space. Performing R&D, identifying trade-offs, and proposing new designs."
+            ],
+            isCurrent: true,
+            tags: ["Python", "FastAPI", "Grafana", "htmx", "c++", "SQLAlchemy", "docker", "gitlab"]
+        },
+        {
             img: "/organizations/ready_education.jpg",
             company: "Ready Education",
             position: "Back End Engineer / Data Scientist",
