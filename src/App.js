@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Github, ExternalLink, Code, Database, Brain, Sun, Moon, ArrowUp } from 'lucide-react';
+import { ExternalLink, Code, Database, Brain, Sun, Moon, ArrowUp } from 'lucide-react';
 import './styles/animations.css';
 import './styles/App.css';
 import References from './components/References';
 import Certificates from './components/Certificates';
 import ExperienceEducation from './components/ExperienceEducation';
 import StarsBackground from './components/StarsBackground';
+import { EmailIcon, GitHubIcon, LinkedInIcon, UpworkIcon } from './components/Icons';
 
 const Card = ({ children, className }) => {
   return (
@@ -38,7 +39,7 @@ const Portfolio = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isDark, setIsDark] = useState(false);
   const [activeTab, setActiveTab] = useState('portfolio');
-  const [visibleTabs, setVisibleTabs] = useState({
+  const [visibleTabs] = useState({
     portfolio: true,
     experience: true,
     references: true,
@@ -46,13 +47,11 @@ const Portfolio = () => {
   });
   
   useEffect(() => {
-    // Simulate loading state
     setIsLoading(true);
     setTimeout(() => setIsLoading(false), 500);
   }, [filter]);
 
   useEffect(() => {
-    // Apply theme to document
     document.documentElement.classList.toggle('dark', isDark);
   }, [isDark]);
 
@@ -63,7 +62,7 @@ const Portfolio = () => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth' // Optional smooth scrolling
+      behavior: 'smooth'
     });
   };
 
@@ -103,14 +102,6 @@ const Portfolio = () => {
       github: "https://github.com/etiennegalea/bird-stream",
       tags: ["Python", "React", "FastAPI", "Docker", "WebSockets"]
     }
-    // {
-    //   title: "Image Classification API",
-    //   description: "REST API for real-time image classification using TensorFlow and FastAPI.",
-    //   category: "dl",
-    //   github: "https://github.com/username/image-classifier",
-    //   demo: "https://api-demo.example.com",
-    //   tags: ["TensorFlow", "FastAPI", "Docker"]
-    // }
   ];
 
   const filteredProjects = filter === 'all' 
@@ -147,7 +138,6 @@ const Portfolio = () => {
         : 'bg-gradient-to-br from-slate-50 from-40% to-slate-300' /* Light mode: slate-50 to slate-200 */
       }`}>
 
-        {/* Render Stars Background only in Dark Mode (Now INSIDE container) */}
         {isDark && <StarsBackground numberOfStars={200} />}
 
         {/* About Me Section */}
@@ -180,7 +170,6 @@ const Portfolio = () => {
         </section>
 
 
-        {/* Responsive Tab Navigation */}
         <div className="tab-navigation-container max-w-4xl mx-auto mb-8 rounded-lg">
           {/* Mobile Tab Selector */}
           <div className="md:hidden mb-4">
@@ -300,7 +289,7 @@ const Portfolio = () => {
                           rel="noopener noreferrer"
                           className={`project-link flex items-center gap-2 hover:text-blue-600 ${isDark ? 'text-zinc-50' : 'text-gray'}`}
                         >
-                          <Github className="h-5 w-5" />
+                          <GitHubIcon className="h-5 w-5" />
                           Code
                         </a>
                         {project.demo && (
@@ -346,9 +335,7 @@ const Portfolio = () => {
                 href="mailto:egalea.11@gmail.com"
                 className="flex items-center justify-center gap-2 hover:text-blue-600 transition-colors"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
+                <EmailIcon className="h-6 w-6" />
                 Email
               </a>
               <a
@@ -357,7 +344,7 @@ const Portfolio = () => {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 hover:text-blue-600 transition-colors"
               >
-                <Github className="h-6 w-6" />
+                <GitHubIcon className="h-6 w-6" />
                 GitHub
               </a>
               <a
@@ -366,9 +353,7 @@ const Portfolio = () => {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 hover:text-blue-600 transition-colors"
               >
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                </svg>
+                <LinkedInIcon className="h-6 w-6" />
                 LinkedIn
               </a>
               <a
@@ -377,19 +362,15 @@ const Portfolio = () => {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 hover:text-blue-600 transition-colors"
               >
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 32 32">
-                  <path d="M24.75 17.542c-1.469 0-2.849-0.62-4.099-1.635l0.302-1.432 0.010-0.057c0.276-1.521 1.13-4.078 3.786-4.078 1.99 0 3.604 1.615 3.604 3.604 0 1.984-1.615 3.599-3.604 3.599zM24.75 6.693c-3.385 0-6.016 2.198-7.083 5.818-1.625-2.443-2.865-5.38-3.583-7.854h-3.646v9.484c-0.005 1.875-1.521 3.391-3.396 3.396-1.875-0.005-3.391-1.526-3.396-3.396v-9.484h-3.646v9.484c0 3.885 3.161 7.068 7.042 7.068 3.885 0 7.042-3.182 7.042-7.068v-1.589c0.708 1.474 1.578 2.974 2.635 4.297l-2.234 10.495h3.729l1.62-7.615c1.417 0.906 3.047 1.479 4.917 1.479 4 0 7.25-3.271 7.25-7.266 0-4-3.25-7.25-7.25-7.25z"></path>
-                </svg>
-                upwork
+                <UpworkIcon className="h-6 w-6" />
+                Upwork
               </a>
             </div>
           </div>
         </footer>
       </div>
 
-      {/* Fixed Buttons Container (Moved Outside) */}
       <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-3">
-          {/* Scroll-to-Top Button (Always Visible) */}
           <button
             onClick={scrollToTop}
             className={`p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors shadow-md`}
@@ -398,7 +379,6 @@ const Portfolio = () => {
             <ArrowUp className={`h-6 w-6 ${isDark ? 'text-gray-200' : 'text-gray-700'}`} />
           </button>
 
-          {/* Theme Toggle Button (Always Visible) */}
           <button
             onClick={toggleTheme}
             className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors shadow-md"

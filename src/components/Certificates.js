@@ -1,12 +1,7 @@
 import React from 'react';
 import '../styles/Certificates.css';
-import { Download, ExternalLink } from 'lucide-react'; // Using lucide-react for icons
 
 const Certificates = () => {
-  // --- Sample Certificate Data ---
-  // Replace with your actual certificates
-  // Ensure 'file' paths point to files in your public/certificates folder
-  // Ensure 'icon' paths point to images in your public/certificates folder (or use null)
   const certificates = [
     {
       title: "B.Sc. Software Engineering",
@@ -51,8 +46,8 @@ const Certificates = () => {
             key={index} 
             href={cert.file} 
             download 
-            target="_blank" // Opens download link in new tab, good practice
-            rel="noopener noreferrer" // Security measure for target="_blank"
+            target="_blank"
+            rel="noopener noreferrer"
             className="certificate-card-link"
           >
             <div className="certificate-card">
@@ -65,13 +60,6 @@ const Certificates = () => {
                 <h3 className="certificate-title text-black dark:text-white">{cert.title}</h3>
                 <p className="certificate-issuer text-gray-600 dark:text-gray-400">{cert.issuer}</p>
               </div>
-              {/* <div className="certificate-link-icon">
-              {cert.file.includes('http') ? 
-                <ExternalLink size={20} className="text-gray-500 dark:text-gray-400" /> :
-                <Download size={20} className="text-gray-500 dark:text-gray-400" />
-              }
-              </div> */}
-              
             </div>
           </a>
 

@@ -76,7 +76,7 @@ const EmploymentHistory = () => {
     ];
     
     return (
-        <div className="employment-history">
+        <div className="max-w-4xl mx-auto mb-8 employment-history">
             <div className="section-header">
                 <h2 className="text-2xl font-bold text-black dark:text-white mb-8">
                     Experience
