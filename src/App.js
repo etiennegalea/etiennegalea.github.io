@@ -19,7 +19,7 @@ const Card = ({ children, className }) => {
 };
 
 const CardHeader = ({ children }) => {
-  return <div className="p-6 border-b">{children}</div>;
+  return <div className="p-6 border-b dark:border-gray-700">{children}</div>;
 };
 
 const CardTitle = ({ children }) => {
@@ -35,9 +35,14 @@ const CardContent = ({ children }) => {
 };  
 
 const Portfolio = () => {
+  const isNighttime = () => {
+    const hour = new Date().getHours();
+    return hour >= 19 || hour < 6;
+  };
+
   const [filter, setFilter] = useState('all');
   const [isLoading, setIsLoading] = useState(true);
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(isNighttime());
   const [activeTab, setActiveTab] = useState('portfolio');
   const [visibleTabs] = useState({
     portfolio: true,
@@ -57,6 +62,13 @@ const Portfolio = () => {
 
   const toggleTheme = () => {
     setIsDark(!isDark);
+
+    // Update the theme every 5 minutes if after hours (or not)
+    const interval = setInterval(() => {
+      setIsDark(isNighttime());
+    }, 60000);
+
+    return () => clearInterval(interval);
   };
 
   const scrollToTop = () => {
