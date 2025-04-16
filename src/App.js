@@ -62,13 +62,6 @@ const Portfolio = () => {
 
   const toggleTheme = () => {
     setIsDark(!isDark);
-
-    // Update the theme every 5 minutes if after hours (or not)
-    const interval = setInterval(() => {
-      setIsDark(isNighttime());
-    }, 60000);
-
-    return () => clearInterval(interval);
   };
 
   const scrollToTop = () => {
