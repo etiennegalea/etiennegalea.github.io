@@ -136,6 +136,30 @@ const Portfolio = () => {
   // Add state for mobile menu
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // Handle URL hash for tab navigation
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.slice(1);
+      if (tabs.find(t => t.id === hash)) {
+        setActiveTab(hash);
+      }
+    };
+
+    // Check initial hash
+    if (window.location.hash) {
+      handleHashChange();
+    }
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []); // tabs dependency is stable as it's defined inside component but const
+
+  const handleTabClick = (tabId) => {
+    setActiveTab(tabId);
+    window.location.hash = tabId;
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <>
       <div className={`portfolio-container relative min-h-screen p-8 ${isDark 
@@ -205,10 +229,7 @@ const Portfolio = () => {
                           ? isDark ? 'bg-blue-600 text-white' : 'bg-blue-100 text-blue-800' 
                           : isDark ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'
                       }`}
-                      onClick={() => {
-                        setActiveTab(tab.id);
-                        setIsMobileMenuOpen(false);
-                      }}
+                      onClick={() => handleTabClick(tab.id)}
                     >
                       {tab.label}
                     </button>
@@ -225,7 +246,7 @@ const Portfolio = () => {
                 <button
                   key={tab.id}
                   className={`tab-button ${activeTab === tab.id ? 'active' : ''}`}
-                  onClick={() => setActiveTab(tab.id)}
+                  onClick={() => handleTabClick(tab.id)}
                 >
                   {tab.label}
                 </button>
