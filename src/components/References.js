@@ -1,5 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/References.css';
+
+const ReferenceItem = ({ refData, processReferenceText }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const processedReference = processReferenceText(refData.reference);
+
+  // Calculate total length to decide if toggle is needed
+  const totalLength = refData.reference.reduce((acc, text) => acc + text.length, 0);
+  const isLong = totalLength > 450 || refData.reference.length > 2;
+
+  const toggleExpand = () => setIsExpanded(!isExpanded);
+
+  return (
+    <div className="reference-card">
+      <div className="reference-header">
+        <div className="reference-image">
+          <img src={refData.img} alt={refData.name} />
+        </div>
+        <div className="reference-info">
+          <h3 className="text-black dark:text-white">{refData.name}</h3>
+          {refData.position && <p className="reference-title text-gray-700 dark:text-gray-300">{refData.position}</p>}
+          <p className="reference-company text-gray-700 dark:text-gray-300">{refData.company}</p>
+        </div>
+      </div>
+      <div className={`reference-content ${!isExpanded && isLong ? 'collapsed' : ''}`}>
+        {processedReference.map((item, i) => {
+          if (item.type === 'paragraph') {
+            return <p key={i} className="text-gray-600 dark:text-gray-300">{item.text}</p>;
+          } else if (item.type === 'list') {
+            return (
+              <ul key={i} className="reference-list">
+                {item.items.map((listItem, j) => (
+                  <li key={j} className="text-gray-600 dark:text-gray-300">{listItem}</li>
+                ))}
+              </ul>
+            );
+          }
+          return null;
+        })}
+        <p className="reference-contact text-gray-500 dark:text-gray-400">{refData.contact}</p>
+      </div>
+      {isLong && (
+        <button
+          onClick={toggleExpand}
+          className="read-more-btn text-blue-600 dark:text-blue-400 hover:underline mt-2 font-medium focus:outline-none"
+        >
+          {isExpanded ? 'Read Less' : 'Read More...'}
+        </button>
+      )}
+    </div>
+  );
+};
 
 const References = () => {
   const references = [
@@ -17,7 +68,7 @@ const References = () => {
       contact: "ianmamo@gmail.com"
     },
     {
-      img:"/organizations/ostfalia.jpeg",
+      img: "/organizations/ostfalia.jpeg",
       name: "Günter Kircher",
       position: "i.A. Dipl.-Ing.",
       company: "Ostfalia University",
@@ -87,43 +138,15 @@ const References = () => {
 
   return (
     <div className="max-w-4xl mx-auto mb-8 references-container">
-      {references.map((ref, index) => {
-        const processedReference = processReferenceText(ref.reference);
-        
-        return (
-          <div key={index} className="reference-card">
-            <div className="reference-header">
-              <div className="reference-image">
-                <img src={ref.img} alt={ref.name} />
-              </div>
-              <div className="reference-info">
-                <h3 className="text-black dark:text-white">{ref.name}</h3>
-                {ref.position && <p className="reference-title text-gray-700 dark:text-gray-300">{ref.position}</p>}
-                <p className="reference-company text-gray-700 dark:text-gray-300">{ref.company}</p>
-              </div>
-            </div>
-            <div className="reference-content">
-              {processedReference.map((item, i) => {
-                if (item.type === 'paragraph') {
-                  return <p key={i} className="text-gray-600 dark:text-gray-300">{item.text}</p>;
-                } else if (item.type === 'list') {
-                  return (
-                    <ul key={i} className="reference-list">
-                      {item.items.map((listItem, j) => (
-                        <li key={j} className="text-gray-600 dark:text-gray-300">{listItem}</li>
-                      ))}
-                    </ul>
-                  );
-                }
-                return null;
-              })}
-              <p className="reference-contact text-gray-500 dark:text-gray-400">{ref.contact}</p>
-            </div>
-          </div>
-        );
-      })}
+      {references.map((ref, index) => (
+        <ReferenceItem
+          key={index}
+          refData={ref}
+          processReferenceText={processReferenceText}
+        />
+      ))}
     </div>
   );
 };
 
-export default References; 
+export default References;

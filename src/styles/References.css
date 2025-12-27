@@ -18,9 +18,6 @@
   background-color: #1f2937;
 }
 
-.reference-card:hover {
-  /* transform: translateY(-5px); */
-}
 
 .reference-header {
   margin-bottom: 1.5rem;
@@ -70,11 +67,47 @@
 .reference-content {
   text-align: left;
   color: var(--text-color);
+  position: relative;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reference-content.collapsed {
+  max-height: 200px;
+}
+
+.reference-content.collapsed::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  /* Taller gradient for smoother fade */
+  background: linear-gradient(transparent, white 80%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.dark .reference-content.collapsed::after {
+  background: linear-gradient(transparent, #1f2937 80%);
 }
 
 .reference-content p {
   margin-bottom: 1rem;
   line-height: 1.6;
+}
+
+.read-more-btn {
+  border: none;
+  background: none;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.read-more-btn:hover {
+  opacity: 0.8;
 }
 
 .reference-list {
@@ -99,28 +132,28 @@
   .reference-header {
     gap: 1rem;
   }
-  
+
   .reference-image {
     width: 60px;
     height: 60px;
   }
-  
+
   .reference-header h3 {
     font-size: 1.1rem;
   }
-  
+
   .reference-title {
     font-size: 0.85rem;
   }
-  
+
   .reference-company {
     font-size: 0.9rem;
   }
-  
+
   .reference-content p {
     font-size: 0.9rem;
   }
-  
+
   .reference-list {
     margin-left: 1rem;
   }
@@ -130,25 +163,25 @@
   .reference-card {
     padding: 1rem;
   }
-  
+
   .reference-header {
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: 0.5rem;
   }
-  
+
   .reference-image {
     width: 70px;
     height: 70px;
     margin-bottom: 0.5rem;
   }
-  
+
   .reference-info {
     width: 100%;
   }
-  
+
   .reference-content p {
     font-size: 0.85rem;
   }
-} 
+}
